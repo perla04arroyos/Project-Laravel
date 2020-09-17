@@ -2,23 +2,29 @@
 
 @section('title','Contact')
 
-@section('content')
-    <h1>Contact</h1>
+@section('header','Contact')
 
+@section('content')
+
+    @include('partials.validation-errors')
+    
     <form action="{{ route('messages.store') }}" method="POST">
         @csrf
-        <input type="text" name="name" placeholder="Nombre" value="{{ old('name') }}">
-        {!! $errors->first('name','<small>:message</small>') !!}
 
-        <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
-        {!! $errors->first('email','<small>:message</small>') !!}
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{ old('name') }}">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="subject" placeholder="Asunto" value="{{ old('subject') }}">
+        </div>
+        <div class="form-group">
+            <textarea name="content" class="form-control" cols="30" rows="10" placeholder="Mensaje" value="{{ old('content') }}"></textarea>
+        </div>
 
-        <input type="text" name="subject" placeholder="Asunto" value="{{ old('subject') }}">
-        {!! $errors->first('subject','<small>:message</small>') !!}
+        <button type="submit" class="btn btn-primary float-right mt-2">Enviar</button>
+    </form>               
 
-        <textarea name="content" cols="30" rows="10" placeholder="Mensaje" value="{{ old('content') }}"></textarea>
-        {!! $errors->first('content','<small>:message</small>') !!}
-
-        <button>Enviar</button>
-    </form>
 @endsection

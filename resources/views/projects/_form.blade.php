@@ -1,10 +1,15 @@
 @csrf
+<div class="form-group">
+    <label for="title">Project title</label>
+    <input type="text" class="form-control" name="title" value="{{ old('title', $project->title) }}">
+</div>
+<div class="form-group">
+    <label for="description">Project description</label>
+    <textarea class="form-control" name="description" id="" cols="30" rows="10">{{ old('description', $project->description) }}</textarea>
+</div>
+<div class="form-group">
+    <label for="url" >Project url</label>
+    <input type="text" class="form-control" name="url" value="{{ old('url', $project->url) }}">
+</div>
 
-<label for="title">Project title</label>
-<input type="text" name="title" value="{{ old('title', $project->title) }}">
-<label for="description">Project description</label>
-<textarea name="description" id="" cols="30" rows="10">{{ old('description', $project->description) }}</textarea>
-<label for="url" >Project url</label>
-<input type="text" name="url" value="{{ old('url', $project->url) }}">
-
-<button>{{ $btnText }}</button>
+<button class="btn btn-success float-right">{{ $btnText }}</button>

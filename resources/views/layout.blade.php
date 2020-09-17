@@ -7,17 +7,19 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href=" {{ mix('/css/app.css') }} ">
     <script src=" {{ mix('/js/app.js') }} " defer></script>
-    <style>
-        
-    </style>
 </head>
 <body>
-    <h1>Proyecto de Laravel</h1>
-    
     @include('partials.nav')
 
     @include('partials.session-status')
 
-    @yield('content')
+    <div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1>@yield('header')</h1>
+                @yield('content')
+            </div>
+        </div>
+    </div>
 </body>
 </html>

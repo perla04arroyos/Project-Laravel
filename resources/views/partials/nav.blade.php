@@ -1,19 +1,21 @@
-<nav>
-    <ul>
-        <li><a href="{{ route('home') }}" class="{{ setActive('home')}}">Home</a></li>
-        <li><a href="{{ route('about') }}" class="{{ setActive('about')}}">About</a></li>
-        <li><a href="{{ route('contact') }}" class="{{ setActive('contact')}}">Contact</a></li>
-        <li><a href="{{ route('projects.index') }}" class="{{ setActive('projects.*')}}">Projects</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ route('home') }}">Laravel Project</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+        <li class="nav-item"><a href="{{ route('about') }}" class="nav-link {{ setActive('about')}}">About</a></li>
+        <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link {{ setActive('contact')}}">Contact</a></li>
+        <li class="nav-item"><a href="{{ route('projects.index') }}" class="nav-link {{ setActive('projects.*')}}">Projects</a></li>
         
         @guest
-            <li><a href="{{ route('login') }}">Login</a></li>
+            <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
         @else
-            <li>
+            <li class="nav-item">
                 <a href="#" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">Logout</a>
+                document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
             </li>
         @endguest
     </ul>
+    </div>
 </nav>
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

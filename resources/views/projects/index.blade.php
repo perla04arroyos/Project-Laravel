@@ -2,21 +2,22 @@
 
 @section('title','Portfolio')
 
-@section('content')
-    <h1>Projects</h1>
+@section('header','Projects')
 
-    @auth
-        <a href="{{ route('projects.create') }}">Create a new project</a>
-    @endauth
-       
-    <ul>
+@section('content')
+
+    <div class="list-group">
         @forelse ($projects as $project)
-            <li><a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a></li>
+            <a class="list-group-item list-group-item-action" href="{{ route('projects.show', $project) }}">{{ $project->title }}</a>
         @empty
-            <li>No projects to display</li>
+            <p class="list-group-item list-group-item-action">No projects to display</p>
         @endforelse
 
         {{ $projects->links() }}
-    </ul>
+    </div>
+
+    @auth
+        <a href="{{ route('projects.create') }}" class="btn btn-dark float-right mt-2" role="button">Create a new project</a>
+    @endauth
 
 @endsection
