@@ -1,17 +1,23 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title','Create Project')
 
-@section('header','Create new project')
-
 @section('content')
 
-    @include('partials.validation-errors')
+    <div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1>Create new project</h1>
 
-    <form method="POST" action="{{ route('projects.store') }}">
+                @include('partials.validation-errors')
 
-        @include('projects._form',['btnText'=>'Save'])
+                <form method="POST" action="{{ route('projects.store') }}">
 
-    </form>
+                    @include('projects._form',['btnText'=>'Save'])
+
+                </form>
+            </div>
+        </div>
+    </div>
 
 @endsection
