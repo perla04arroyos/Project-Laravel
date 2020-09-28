@@ -1,3 +1,4 @@
+{{-- {{ dd( auth()->user()->roles->toArray() ) }} --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

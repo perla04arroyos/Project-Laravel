@@ -37,19 +37,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class,'assigned_roles');
     }
 
 
     public function hasRoles(array $roles)
     {
+        // dd($this->role);
         foreach($roles as $role)
         {
-            if($this->role->key == $role)
+            foreach($this->roles as $userRole)
             {
-                return true;
+                if($userRole->key == $role)
+                {
+                    return true;
+                }
             }
         }
         
