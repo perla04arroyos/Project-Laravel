@@ -37,7 +37,7 @@
                             </li>
                         @endif
                     @else
-                        @if (auth()->user()->hasRoles(['admin','estudiante']))
+                        @if (auth()->user()->hasRoles(['admin']))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
                             </li>

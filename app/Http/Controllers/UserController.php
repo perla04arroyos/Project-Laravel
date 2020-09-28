@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $this->middleware([
             'auth',
-            'roles:admin,estudiante'
+            'roles:admin'
         ]);
     }
 
