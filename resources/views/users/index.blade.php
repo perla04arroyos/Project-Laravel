@@ -11,10 +11,10 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,11 +29,11 @@
                                 @endforeach                                       
                             </td>
                             <td>
-                                <a class="btn btn-info btn-sm btn-block mb-1" href="{{ route('users.edit', $user->id) }}" role="button">Editar</a>
-                                <form method="" action="{{ route('users.destroy', $user->id) }}" class="">
-                                    @csrf @method('DELETE')
+                                <a class="btn btn-info btn-sm btn-block mb-1" href="{{ route('users.edit', $user->id) }}" role="button">Edit</a>
 
-                                    <button class="btn btn-danger btn-sm btn-block" type="submit">Eliminar</button>
+                                <form method="POST" action="{{ route('users.destroy', $user->id) }}" class="">
+                                    @csrf @method('DELETE')
+                                    <button class="btn btn-danger btn-sm btn-block">Delete</button>
                                 </form>
                             </td>
                         </tr>
