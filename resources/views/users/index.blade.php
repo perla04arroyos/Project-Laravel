@@ -28,6 +28,14 @@
                                     {{  $role->name }}
                                 @endforeach                                       
                             </td>
+                            <td>
+                                <a class="btn btn-info btn-sm btn-block mb-1" href="{{ route('users.edit', $user->id) }}" role="button">Editar</a>
+                                <form method="" action="{{ route('users.destroy', $user->id) }}" class="">
+                                    @csrf @method('DELETE')
+
+                                    <button class="btn btn-danger btn-sm btn-block" type="submit">Eliminar</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>            
