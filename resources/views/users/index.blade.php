@@ -24,9 +24,7 @@
                             <td>{{  $user->name }}</td>
                             <td>{{  $user->email }}</td>
                             <td>
-                                @foreach ($user->roles as $role)
-                                    {{  $role->name }}
-                                @endforeach                                       
+                                {{ $user->roles->pluck('name')->implode(' - ') }}                                    
                             </td>
                             <td>
                                 <a class="btn btn-info btn-sm btn-block mb-1" href="{{ route('users.edit', $user->id) }}" role="button">Edit</a>
