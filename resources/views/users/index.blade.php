@@ -7,6 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1>Users</h1>
+            <a class="btn btn-primary float-right mb-2" href="{{ route('users.create') }}">Create new user</a>
             <table class="table">
                 <thead>
                     <tr>

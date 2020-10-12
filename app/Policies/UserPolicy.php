@@ -41,4 +41,5 @@ class UserPolicy
     {
         return $authUser->id === $user->id;
     }
+
 }
