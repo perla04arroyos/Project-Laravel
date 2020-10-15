@@ -15,6 +15,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
+                        <th scope="col">Note</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -26,6 +27,11 @@
                             <td>{{  $user->email }}</td>
                             <td>
                                 {{ $user->roles->pluck('name')->implode(' - ') }}                                    
+                            </td>
+                            <td>
+                                @if ($user->note)
+                                    {{ $user->note->body }} 
+                                @endif                                   
                             </td>
                             <td>
                                 <a class="btn btn-info btn-sm btn-block mb-1" href="{{ route('users.edit', $user->id) }}" role="button">Edit</a>

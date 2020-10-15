@@ -14,7 +14,11 @@
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">{{ $project->title }}</h5>
                                 <small>{{ $project->created_at->diffForHumans() }}</small>
-                              </div>
+                            </div>
+                            @if ($project->note)
+                                <p class="mb-1">{{ $project->note->body }}</p>
+                            @endif
+                            
                             @if ($project->user_id)
                                 <small>{{ $project->user->name }}</small>
                             @endif
