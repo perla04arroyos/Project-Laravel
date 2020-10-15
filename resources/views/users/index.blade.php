@@ -16,6 +16,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                         <th scope="col">Note</th>
+                        <th scope="col">Tag</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -31,6 +32,11 @@
                             <td>
                                 @if ($user->note)
                                     {{ $user->note->body }} 
+                                @endif                                   
+                            </td>
+                            <td>
+                                @if ($user->tags)
+                                    {{ $user->tags->pluck('name')->implode(',') }}
                                 @endif                                   
                             </td>
                             <td>

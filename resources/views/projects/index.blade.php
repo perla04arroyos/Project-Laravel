@@ -15,9 +15,6 @@
                                 <h5 class="mb-1">{{ $project->title }}</h5>
                                 <small>{{ $project->created_at->diffForHumans() }}</small>
                             </div>
-                            @if ($project->note)
-                                <p class="mb-1">{{ $project->note->body }}</p>
-                            @endif
                             
                             @if ($project->user_id)
                                 <small>{{ $project->user->name }}</small>
