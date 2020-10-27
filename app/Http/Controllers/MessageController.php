@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Mail\MessageReceived;
+use App\Events\MessageWasReceived;
 use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
@@ -20,8 +19,7 @@ class MessageController extends Controller
            'name.required' => 'I need your name'
        ]);
 
-       Mail::to('perla.pmar04@gmail.com')->queue(new MessageReceived($message));
-
+       event(new MessageWasReceived($message));
        return back()->with('status','We received your message, we will answer you in less than 24 hours');
     }
 }

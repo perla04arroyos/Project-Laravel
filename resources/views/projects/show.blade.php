@@ -9,13 +9,7 @@
             <div class="col-md-8">
                 <h1>{{ $project->title }}</h1>
                 <p>{{ $project->description }}</p>
-
-                @if ($project->note)
-                    <p>{{ $project->note->body }}</p>
-                @endif
-                @if ($project->tags)
-                    <p>{{ $project->tags->pluck('name')->implode(',') }}</p>
-                @endif
+       
                 <small>{{ $project->created_at->diffForHumans() }}</small>
 
                 @auth

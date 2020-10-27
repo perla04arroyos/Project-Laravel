@@ -10,13 +10,17 @@
     
                 <form action="{{ route('messages.store') }}" method="POST">
                     @csrf
-            
-                    <div class="form-group">
+                    
+                    {{-- @if (auth()->guest()) --}}
+                        <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="E-mail" value="{{ old('email') }}">
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="E-mail" value="{{ old('email') }}">
+                        </div>
+                    {{-- @endif --}}
+                    
+
                     <div class="form-group">
                         <input type="text" class="form-control" name="subject" placeholder="Subject" value="{{ old('subject') }}">
                     </div>

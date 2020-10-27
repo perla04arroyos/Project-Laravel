@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageReceived extends Mailable
+class MessageToTheOwner extends Mailable
 {
     use Queueable, SerializesModels;
     public $msg;
@@ -28,6 +28,6 @@ class MessageReceived extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.message-received');
+        return $this->view('emails.message-notification');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+// use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\SaveProjectRequest;
 
 class ProjectController extends Controller
@@ -22,8 +23,10 @@ class ProjectController extends Controller
     public function index()
     {       
         return view('projects.index', [
-            'projects' => Project::latest()->paginate()
+            'projects' => Project::with(['user','note','tags'])->get()
         ]);
+        // $projects = Project::latest()->paginate()->with('user')->get();
+        // return view('projects.index', compact('projects'));
     }
 
     public function show(Project $project)
