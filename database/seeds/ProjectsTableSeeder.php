@@ -13,7 +13,7 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         Project::truncate();
-        for($i = 1; $i < 11; $i++){
+        for($i = 1; $i < 101; $i++){
             Project::create([
                 'title' => "Proyecto {$i}",
                 'url' => "proyecto-{$i}",

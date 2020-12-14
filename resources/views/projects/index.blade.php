@@ -33,7 +33,7 @@
                         <p class="list-group-item list-group-item-action">No projects to display</p>
                     @endforelse
 
-                    {{-- {{ $projects->links() }} --}}
+                    {{ $projects->links('pagination::bootstrap-4') }} 
                 </div>
 
                 @auth
