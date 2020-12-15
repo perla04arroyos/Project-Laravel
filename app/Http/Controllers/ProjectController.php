@@ -24,7 +24,8 @@ class ProjectController extends Controller
     {   
         $key = "projects.page." . request('page',1);
 
-        $projects = Cache::rememberForever($key, function(){
+        $projects = Cache::tags('projects')
+        ->rememberForever($key, function(){
             return Project::with(['user','note','tags'])->latest()->paginate(10);
         });
 
@@ -33,10 +34,6 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        // $project_ = Cache::remember("projects.{$project->id}", 120, function() use ($project){
-        //     return Project::findOrFail($project->id);
-        // });
-
         return view('projects.show',[
             'project' => $project
         ]);
@@ -58,7 +55,7 @@ class ProjectController extends Controller
             auth()->user()->projects()->save($project);
         }
 
-        Cache::flush();
+        Cache::tags('projects')->flush();
 
         // auth()->user()->projects()->create( $request->validated() );
 
@@ -74,6 +71,8 @@ class ProjectController extends Controller
 
     public function update(Project $project, SaveProjectRequest $request)
     {
+        Cache::tags('projects')->flush();
+
         $project->update( $request->validated() );
 
         return redirect()->route('projects.show', $project)->with('status','The project has been updated successfully');
@@ -83,7 +82,7 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        Cache::flush();
+        Cache::tags('projects')->flush();
 
         return redirect()->route('projects.index')->with('status','The project has been deleted successfully');
     }
