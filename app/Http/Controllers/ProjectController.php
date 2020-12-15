@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Project;
-use Illuminate\Http\Request;
-// use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\SaveProjectRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectController extends Controller
 {
@@ -21,14 +21,22 @@ class ProjectController extends Controller
     }
 
     public function index()
-    {       
-        return view('projects.index', [
-            'projects' => Project::with(['user','note','tags'])->paginate(10)
-        ]);
+    {   
+        $key = "projects.page." . request('page',1);
+
+        $projects = Cache::rememberForever($key, function(){
+            return Project::with(['user','note','tags'])->latest()->paginate(10);
+        });
+
+        return view('projects.index',['projects'=>$projects]);
     }
 
     public function show(Project $project)
     {
+        // $project_ = Cache::remember("projects.{$project->id}", 120, function() use ($project){
+        //     return Project::findOrFail($project->id);
+        // });
+
         return view('projects.show',[
             'project' => $project
         ]);
@@ -43,14 +51,16 @@ class ProjectController extends Controller
 
     public function store(SaveProjectRequest $request)
     {
-        // $project = Project::create( $request->validated() );
+        $project = Project::create( $request->validated() );
 
-        // if(auth()->check())
-        // {
-        //     auth()->user()->projects()->save($project);
-        // }
+        if(auth()->check())
+        {
+            auth()->user()->projects()->save($project);
+        }
 
-        auth()->user()->projects()->create( $request->validated() );
+        Cache::flush();
+
+        // auth()->user()->projects()->create( $request->validated() );
 
         return redirect()->route('projects.index')->with('status','The project has been created succesfully');
     }
@@ -72,6 +82,9 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
+        Cache::flush();
+
         return redirect()->route('projects.index')->with('status','The project has been deleted successfully');
     }
 }
