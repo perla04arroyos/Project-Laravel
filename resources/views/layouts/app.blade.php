@@ -72,6 +72,5 @@
     @include('partials.validation-errors')
 
     @yield('content')
-
 </body>
 </html>

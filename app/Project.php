@@ -2,12 +2,11 @@
 
 namespace App;
 
+use App\Presenters\ProjectPresenter;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    //protected $table = 'my_table';
-
     protected $guarded = [];
 
     public function getRouteKeyName()
@@ -28,5 +27,10 @@ class Project extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
+    }
+
+    public function present()
+    {
+        return new ProjectPresenter($this);
     }
 }

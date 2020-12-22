@@ -9,8 +9,11 @@
             <div class="col-md-8">
                 <h1>{{ $project->title }}</h1>
                 <p>{{ $project->description }}</p>
-       
-                <small>{{ $project->created_at->diffForHumans() }}</small>
+
+                <p>{{ $project->present()->projectNote() }}</p>
+                <p>{{ $project->present()->projectTag() }}</p>
+                
+                <small>{{ $project->present()->date() }} by {{ $project->present()->userName() }}</small>
 
                 @auth
                     <br>     

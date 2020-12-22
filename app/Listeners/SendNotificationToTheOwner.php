@@ -8,7 +8,7 @@ use App\Mail\MessageToTheOwner;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendNotificationToTheOwner
+class SendNotificationToTheOwner implements ShouldQueue
 {
     /**
      * Create the event listener.

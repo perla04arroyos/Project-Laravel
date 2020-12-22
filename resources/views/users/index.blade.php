@@ -27,17 +27,13 @@
                             <td>{{  $user->name }}</td>
                             <td>{{  $user->email }}</td>
                             <td>
-                                {{ $user->roles->pluck('name')->implode(' - ') }}                                    
+                                {{ $user->present()->roles() }}
                             </td>
                             <td>
-                                @if ($user->note)
-                                    {{ $user->note->body }} 
-                                @endif                                   
+                                {{ $user->present()->userNote() }}
                             </td>
                             <td>
-                                @if ($user->tags)
-                                    {{ $user->tags->pluck('name')->implode(',') }}
-                                @endif                                   
+                                {{ $user->present()->userTag() }}
                             </td>
                             <td>
                                 <a class="btn btn-info btn-sm btn-block mb-1" href="{{ route('users.edit', $user->id) }}" role="button">Edit</a>
