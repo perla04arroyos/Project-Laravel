@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     echo "<pre>{$query->sql}</pre>";
 // });
 
-Route::get('job', function(){
-    dispatch(new App\Jobs\CreateProject);
+// Route::get('job', function(){
+//     dispatch(new App\Jobs\CreateProject);
 
-    return "Listo!";
-});
+//     return "Listo!";
+// });
 
 
 Route::get('roles', function(){
