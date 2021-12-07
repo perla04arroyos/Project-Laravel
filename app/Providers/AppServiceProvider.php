@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\ProjectsInterface;
 use App\Repositories\CacheProjects;
+use App\Repositories\Projects;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(ProjectsInterface::class, CacheProjects::class);
+        $this->app->bind(ProjectsInterface::class, Projects::class);
     }
 }
