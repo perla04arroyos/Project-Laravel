@@ -9,8 +9,6 @@
             <div class="col-md-8">
                 <h1>Create new project</h1>
 
-                @include('partials.validation-errors')
-
                 <form method="POST" action="{{ route('projects.store') }}">
 
                     @include('projects._form',['btnText'=>'Save'])
