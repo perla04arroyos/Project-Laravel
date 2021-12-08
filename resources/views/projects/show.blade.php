@@ -7,6 +7,11 @@
     <div class="container mt-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
+
+                @if($project->image) 
+                    <img src="/storage/{{ $project->image}}" alt="{{ $project->title }}">
+                @endif
+                
                 <h1>{{ $project->title }}</h1>
                 <p>{{ $project->description }}</p>
 

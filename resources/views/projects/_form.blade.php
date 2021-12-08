@@ -11,5 +11,9 @@
     <label for="url" >Project url</label>
     <input type="text" class="form-control" name="url" value="{{ old('url', $project->url) }}">
 </div>
+<div class="custom-file">
+    <input type="file" class="custom-file-input" id="customFile" name="image">
+    <label for="customFile" class="custom-file-label">Choose File</label>  
+</div>
 
-<button class="btn btn-success float-right">{{ $btnText }}</button>
+<button class="btn btn-success float-right mt-3">{{ $btnText }}</button>

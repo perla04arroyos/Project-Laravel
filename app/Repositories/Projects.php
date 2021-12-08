@@ -13,7 +13,10 @@ class Projects implements ProjectsInterface
 
     public function store($request) 
     {
-        $project = Project::create( $request->validated() );
+        $project = new Project( $request->validated() );
+        $project->image = $request->file('image')->store('images');
+        
+        //$project = Project::create( $request->validated() );
 
         if(auth()->check())
         {
