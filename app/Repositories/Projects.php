@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Project;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class Projects implements ProjectsInterface
 {
@@ -22,6 +23,13 @@ class Projects implements ProjectsInterface
         if(auth()->check())
         {
             auth()->user()->projects()->save($project);
+            
+            $image = Image::make(Storage::get($project->image))
+                ->widen(600)
+                ->limitColors(255)
+                ->encode();
+
+            Storage::put($project->image, (string) $image);
         }
 
         return $project;
@@ -38,6 +46,14 @@ class Projects implements ProjectsInterface
             $project->image = $request->file('image')->store('images');
 
             auth()->user()->projects()->save($project);
+
+            // Image:make(storage_path('app/public' . $project->image));
+            $image = Image::make(Storage::get($project->image))
+                ->widen(600)
+                ->limitColors(255)
+                ->encode();
+
+            Storage::put($project->image, (string) $image);
         }
         else
         {
