@@ -9,7 +9,7 @@
             <div class="col-md-8 bg-white p-4 shadow rounded">
 
                 @if($project->image) 
-                    <img class="mx-auto d-block mb-4 rounded" src="/storage/{{ $project->image}}" alt="{{ $project->title }}">
+                    <img class="w-100 mx-auto d-block mb-4 rounded" src="/storage/{{ $project->image}}" alt="{{ $project->title }}">
                 @endif
 
                 <h1>{{ $project->title }}</h1>

@@ -10,7 +10,7 @@
                 <div class="col-sm-4 mb-4 d-flex justify-content-center">
                     <div class="card" style="width: 18rem;">       
                         @if($project->image) 
-                            <img class="card-img-top"  src="/storage/{{ $project->image}}" alt="{{ $project->title }}">
+                            <img class="w-100 card-img-top"  src="/storage/{{ $project->image}}" alt="{{ $project->title }}">
                         @endif
                         <div class="card-body">                                    
                             <h5 class="mb-1">{{ $project->title }}</h5>

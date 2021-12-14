@@ -1,4 +1,9 @@
 @csrf
+
+@if($project->image) 
+    <img class="w-100 mx-auto d-block mb-4 rounded" src="/storage/{{ $project->image}}" alt="{{ $project->title }}">
+@endif
+
 <div class="form-group">
     <label for="title">Project title</label>
     <input type="text" class="form-control" name="title" value="{{ old('title', $project->title) }}">

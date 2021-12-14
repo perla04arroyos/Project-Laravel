@@ -6,7 +6,7 @@
 
     <div class="container mt-2">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 bg-white p-4 shadow rounded">
                 <h1>Create new project</h1>
 
                 <form 

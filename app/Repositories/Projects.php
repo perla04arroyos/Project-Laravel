@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Project;
+use Illuminate\Support\Facades\Storage;
 
 class Projects implements ProjectsInterface
 {
@@ -28,13 +29,28 @@ class Projects implements ProjectsInterface
 
     public function update($project, $request)
     {
-        $project->update( $request->validated() );
+        if($request->hasFile('image'))
+        {
+            Storage::delete($project->image);
+
+            $project = $project->fill( $request->validated() );
+
+            $project->image = $request->file('image')->store('images');
+
+            auth()->user()->projects()->save($project);
+        }
+        else
+        {
+            $project->update( array_filter($request->validated()) );
+        }
 
         return $project;
     }
 
     public function destroy($project)
     {
+        Storage::delete($project->image);
+
         $project->delete();
 
         return $project;

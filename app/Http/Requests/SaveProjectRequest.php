@@ -32,8 +32,8 @@ class SaveProjectRequest extends FormRequest
                 Rule::unique('projects')->ignore( $this->route('project') )
             ],
             'image' => [
-                'required', 
-                // 'mimes:jpeg,png',
+                $this->route('project') ? 'nullable' : 'required', 
+                //'mimes:jpeg,png',
                 // 'dimensions:min_width=400,min_height=200',
                 // 'dimensions:ratio=16/9',
                 // 'max:2000' //tamaño maximo 2000 kb
