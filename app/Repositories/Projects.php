@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Project;
+use App\Events\ProjectSaved;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class Projects implements ProjectsInterface
 {
@@ -23,13 +23,8 @@ class Projects implements ProjectsInterface
         if(auth()->check())
         {
             auth()->user()->projects()->save($project);
-            
-            $image = Image::make(Storage::get($project->image))
-                ->widen(600)
-                ->limitColors(255)
-                ->encode();
 
-            Storage::put($project->image, (string) $image);
+            ProjectSaved::dispatch($project);
         }
 
         return $project;
@@ -47,13 +42,7 @@ class Projects implements ProjectsInterface
 
             auth()->user()->projects()->save($project);
 
-            // Image:make(storage_path('app/public' . $project->image));
-            $image = Image::make(Storage::get($project->image))
-                ->widen(600)
-                ->limitColors(255)
-                ->encode();
-
-            Storage::put($project->image, (string) $image);
+            ProjectSaved::dispatch($project);       
         }
         else
         {

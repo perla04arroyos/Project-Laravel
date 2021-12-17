@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendAutoresponder',
             'App\Listeners\SendNotificationToTheOwner',
         ],
+        'App\Events\ProjectSaved' => [
+            'App\Listeners\OptimizeProjectImage'
+        ]
     ];
 
     /**
